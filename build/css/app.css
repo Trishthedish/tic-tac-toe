@@ -1,0 +1,51 @@
+body{
+  background:#2980b9;
+  font-family: 'Indie Flower', cursive;
+  margin: 0;
+}
+
+/*Tic Tac Toe game board*/
+canvas{
+    width: 100px;
+    height: 90px;
+    border: 1px solid black;
+    display: inline;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div {
+    display: block;
+}
+
+
+
+/*controling new game button */
+.btn {
+  background:#f1c40f;
+  color:#e74c3c;
+  font-size:1.5em;
+  font-weight:bold;
+  margin:5px;
+  width:20%;
+}
+
+.btn:hover,.btn:focus,.btn:active {
+  background:#f39c12;
+  color:#ecf0f1;
+}
+
+h1 {
+  color:#2c3e50;
+  font-size:84px;
+  font-family: 'Indie Flower';
+}
+
+/*collection of buttons?*/
+.buttons {
+  text-align:center;
+}
+
+.header {
+  text-align: center;
+}

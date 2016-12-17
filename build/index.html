@@ -3,8 +3,38 @@
   <head>
     <title>Tic-Tac-Toe</title>
     <meta charset="utf-8">
+    <!-- <link rel="stylesheet" href="css/foundation.css"> -->
+    <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
+    <center>
+      <header>
+      <h1>Tic Tac Toe</h1>
+    </header>
+      <div id="topRow">
+         <canvas id="1" onclick="tictactoe.update(this.id)"></canvas>
+         <canvas id="2" onclick="tictactoe.update(this.id)"></canvas>
+         <canvas id="3" onclick="tictactoe.update(this.id)"></canvas>
+     </div>
+     <div id="centerRow">
+         <canvas id="4" onclick="tictactoe.update(this.id)"></canvas>
+         <canvas id="5" onclick="tictactoe.update(this.id)"></canvas>
+         <canvas id="6" onclick="tictactoe.update(this.id)"></canvas>
+     </div>
+     <div id="lowerRow">
+         <canvas id="7" onclick="tictactoe.update(this.id)"></canvas>
+         <canvas id="8" onclick="tictactoe.update(this.id)"></canvas>
+         <canvas id="9" onclick="tictactoe.update(this.id)"></canvas>
+     </div></center>
+
+      <div class="buttons row">
+        <center>
+          <div class="btn small-3 columns">New Game
+          </div>
+        </center>
+      </div>
+
+
     <script src="/app.bundle.js" charset="utf-8"></script>
   </body>
 </html>
