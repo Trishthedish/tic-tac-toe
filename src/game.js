@@ -6,31 +6,25 @@ import Backbone from 'Backbone';
 // constructor function
 const Game = Backbone.Model.extend({
 
+  initialize: function(options){
+    this.set("board",[
+      ["", "", ""],
+      ["", "", ""],
+      ["", "", ""]
+    ]);
+    // this is where I could make a blank array, to hold user input names.
+    this.set("playerX", "Frida");
+    this.set("playerO", "Harry");
+    this.set("nextTurn", 1);
+    this.set("status", "pending");
+    this.set("pointValues", [
+      [8, 1, 6],
+      [3, 5, 7],
+      [4, 9, 2]
+    ]);
+  }, // end of initialize.
 
-
-
-}); // wnsd const Game
-
-
-var Game = function() {
-  this.board = [
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""]
-  ];
-  this.playerX = "Frida";
-  this.playerO = "Harry";
-  this.nextTurn = 1;
-  this.status = "pending";
-
-  // pointValues assigns a magic square point value to each spot on this.board. ie, this.board[0][0] has the point value of this.pointValues[0][0]
-  this.pointValues = [[8,1,6],
-                    [3,5,7],
-                    [4,9,2]];
-};
-
-Game.prototype = {
-
+// testing puproses
   helloWorld: function() {
     return "hello world";
   },
@@ -89,7 +83,6 @@ Game.prototype = {
     }
 
   },
-
   findWinner: function() {
     // check vertical
     if (this.vertical() != "pending") {
@@ -223,16 +216,10 @@ Game.prototype = {
     }
   }
 
+}); // end of const Game
 
-
-
-};
-
-//
 // npm run repl
 // var Game = require('game').default;
 // var game = new Game();
 
-
 export default Game;
-// module.exports = Game; // do we need this?
