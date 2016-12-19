@@ -17,11 +17,12 @@ const Game = Backbone.Model.extend({
     this.set("playerO", "Harry");
     this.set("nextTurn", 1);
     this.set("status", "pending");
-    this.set("pointValues", [
+
+    this.pointValues = [
       [8, 1, 6],
       [3, 5, 7],
       [4, 9, 2]
-    ]);
+    ];
   }, // end of initialize.
 
 // testing puproses
@@ -30,8 +31,8 @@ const Game = Backbone.Model.extend({
   },
 
   incrementTurn: function() {
-    if (this.nextTurn <= 9) {
-      this.nextTurn += 1;
+    if (this.get("nextTurn") <= 9) {
+      this.set("nextTurn", this.get("nextTurn")+ 1);  // how can I set this?
     }
   },
 
@@ -40,7 +41,7 @@ const Game = Backbone.Model.extend({
     if (row > 2 || column > 2 || row < 0 || column < 0) {
       throw new TypeError();
     }
-    if (this.board[row][column] !== "" ) {
+    if (this.get("board")[row][column] !== "" ) {
       // its occupied,
       return true;
     } else {
@@ -57,29 +58,30 @@ const Game = Backbone.Model.extend({
       return "Already been useed, please pick another spot.";
 
       // allows us to keep ppl from playing after game is over!
-    } else if (this.status !== "pending") {
+    } else if (this.get("status") !== "pending") {
 
       return "Game is over, just let it go!";
 
     } else {
-      if (this.nextTurn % 2 === 0) {
+      if (this.get("nextTurn") % 2 === 0) {
         // if its even play O
-        this.board[row][column] = "O";
+        this.get("board")[row][column] = "O";
 
       } else {
         //else play X
-        this.board[row][column] = "X";
+        this.get("board")[row][column] = "X";
       }
       // increment turn everytime
       this.incrementTurn();
       // see if we have winner.
       this.findWinner();
     }
-    // console.log("board:", this.board);
-    if (this.status == "pending") {
-      return this.board;
+    // console.log("get("board"):", this.get("board"));
+    if (this.get("status") == "pending") {
+      return this.get("board");
     } else {
-      return this.status;
+      // does staus need to change as well?
+      return this.get("status");
     }
 
   },
@@ -98,11 +100,11 @@ const Game = Backbone.Model.extend({
       return this.diagonal();
     }
     // check if the game is complete && tied
-    else if (this.status == "pending" && this.nextTurn == 10) {
-      this.status = "tie";
-      return this.status;
+    else if (this.get("status") == "pending" && this.get("nextTurn") == 10) {
+      this.set("status", "tie");
+      return this.get("status");
     } else {
-      return this.status;
+      return this.get("status");
     }
   },
 
@@ -111,10 +113,10 @@ const Game = Backbone.Model.extend({
     var scoreO = 0;
     for (var row = 0; row < 3; row++) {
       for (var col = 0; col < 3; col++) {
-        if (this.board[col][row] == "X") {
+        if (this.get("board")[col][row] == "X") {
           scoreX += this.pointValues[col][row];
           // console.log("element is X", scoreX)
-        } else if (this.board[col][row] == "O") {
+        } else if (this.get("board")[col][row] == "O") {
           scoreO += this.pointValues[col][row];
           // console.log("element is O", scoreO)
         }
@@ -122,14 +124,14 @@ const Game = Backbone.Model.extend({
       var winner = this.checkScore(scoreX,scoreO);
       // console.log(this.checkScore(scoreX, scoreO))
       if (winner) {
-        this.status = winner;
+        this.set("status", winner);
       } else {
         //reset scores
         scoreX = 0;
         scoreO = 0;
       }
     }
-    return this.status;
+    return this.get("status");
   },
 
   horizontal: function () {
@@ -137,10 +139,10 @@ const Game = Backbone.Model.extend({
     var scoreO = 0;
     for (var row = 0; row < 3; row++) {
       for (var col = 0; col < 3; col++) {
-        if (this.board[row][col] == "X") {
+        if (this.get("board")[row][col] == "X") {
           scoreX += this.pointValues[row][col];
           // console.log("element is X")
-        } else if (this.board[row][col] == "O") {
+        } else if (this.get("board")[row][col] == "O") {
           scoreO += this.pointValues[row][col];
           // console.log("element is O")
         }
@@ -149,13 +151,13 @@ const Game = Backbone.Model.extend({
     var winner = this.checkScore(scoreX,scoreO);
     // console.log(this.checkScore(scoreX, scoreO))
     if (winner) {
-      this.status = winner;
+      this.set("status", winner);
     } else {
       //reset scores
       scoreX = 0;
       scoreO = 0;
     }
-    return this.status;
+    return this.get("status");
   },
 
   diagonal: function() {
@@ -165,9 +167,9 @@ const Game = Backbone.Model.extend({
     // top right --> bottom left. AKA the hard one!
     for(var row = 0; row < 3; row++) {
       var col = 2-row;
-      if (this.board[row][col] == "X") {
+      if (this.get("board")[row][col] == "X") {
         scoreX += this.pointValues[row][col];
-      } else if (this.board[row][col] == "O") {
+      } else if (this.get("board")[row][col] == "O") {
         scoreO += this.pointValues[row][col];
       }
     }
@@ -175,8 +177,8 @@ const Game = Backbone.Model.extend({
     var winner = this.checkScore(scoreX,scoreO);
     // console.log(this.checkScore(scoreX, scoreO))
     if (winner) {
-      this.status = winner;
-      return this.status;
+      this.set("status", winner);
+      return this.get("status");
     } else {
       //reset scores
       scoreX = 0;
@@ -187,9 +189,9 @@ const Game = Backbone.Model.extend({
     scoreO = 0;
       // top left ---> bottom right
     for(var i = 0; i < 3; i++) {
-      if(this.board[i][i] == "X") {
+      if(this.get("board")[i][i] == "X") {
         scoreX += this.pointValues[i][i];
-      } else if (this.board[i][i] == "O") {
+      } else if (this.get("board")[i][i] == "O") {
         scoreO += this.pointValues[i][i];
       }
     }
@@ -197,14 +199,14 @@ const Game = Backbone.Model.extend({
     winner = this.checkScore(scoreX,scoreO);
     // console.log(this.checkScore(scoreX, scoreO))
     if (winner) {
-      this.status = winner;
-      return this.status;
+      this.set("status", winner);
+      return this.get("status");
     } else {
       //reset scores
       scoreX = 0;
       scoreO = 0;
     }
-    return this.status;
+    return this.get("status");
 
   },
 

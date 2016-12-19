@@ -1,4 +1,4 @@
-Wave Two:
+#### Wave Two:
 
 In this wave, we will design the framework of our Backbone application. Then, using this framework we create for ourselves, we will begin by implementing the front-end of our Tic-Tac-Toe game using Backbone Views.
 
@@ -19,4 +19,16 @@ No additional requirements for this wave
 
 < /hr>
 
-Collections  
+#### Wave Three:
+
+In this wave we will be taking the code we wrote in Wave One for the Tic-Tac-Toe game using plain JavaScript and converting this into Backbone Models. We will integrate these models with the rest of the Backbone application we created in Wave Two.
+
+Converting to Backbone Model
+
+More details forthcoming
+
+Wave Four:
+
+In this wave you'll connect the Backbone web application you created in the previous wave to an existing Rails API that has standard RESTful CRUD routes.
+
+Read the documentation for the Tic-Tac-Toe API
