@@ -1,5 +1,17 @@
 // game.js
+// step 1 import backbone
+import Backbone from 'Backbone';
+
+
 // constructor function
+const Game = Backbone.Model.extend({
+
+
+
+
+}); // wnsd const Game
+
+
 var Game = function() {
   this.board = [
     ["", "", ""],

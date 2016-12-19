@@ -7,25 +7,46 @@
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
-    <center>
-      <header>
+
+  <center>
+
+    <header>
       <h1>Tic Tac Toe</h1>
+      <!-- <section class="row player-form">
+        <h3>Add Players</h3>
+        <form action="">
+          <label> Player X's Name
+            <input type="text" name="xName">
+          </label>
+          <label> Player O's Name
+            <input type="text" name="oName">
+          </label>
+            <h3 class="btn">Save Team</h3>
+            <h3 class="btn">Cancel</h3>
+        </form>
+      </section> -->
     </header>
+
+
+    <section id="gameboard">
       <div id="topRow">
-         <canvas id="1" onclick="tictactoe.update(this.id)"></canvas>
-         <canvas id="2" onclick="tictactoe.update(this.id)"></canvas>
-         <canvas id="3" onclick="tictactoe.update(this.id)"></canvas>
-     </div>
-     <div id="centerRow">
-         <canvas id="4" onclick="tictactoe.update(this.id)"></canvas>
-         <canvas id="5" onclick="tictactoe.update(this.id)"></canvas>
-         <canvas id="6" onclick="tictactoe.update(this.id)"></canvas>
-     </div>
-     <div id="lowerRow">
-         <canvas id="7" onclick="tictactoe.update(this.id)"></canvas>
-         <canvas id="8" onclick="tictactoe.update(this.id)"></canvas>
-         <canvas id="9" onclick="tictactoe.update(this.id)"></canvas>
-     </div></center>
+           <canvas id="1" onclick="tictactoe.update(this.id)"></canvas>
+           <canvas id="2" onclick="tictactoe.update(this.id)"></canvas>
+           <canvas id="3" onclick="tictactoe.update(this.id)"></canvas>
+      </div>
+      <div id="centerRow">
+          <canvas id="4" onclick="tictactoe.update(this.id)"></canvas>
+           <canvas id="5" onclick="tictactoe.update(this.id)"></canvas>
+           <canvas id="6" onclick="tictactoe.update(this.id)"></canvas>
+       </div>
+       <div id="lowerRow">
+           <canvas id="7" onclick="tictactoe.update(this.id)"></canvas>
+           <canvas id="8" onclick="tictactoe.update(this.id)"></canvas>
+           <canvas id="9" onclick="tictactoe.update(this.id)"></canvas>
+       </div>
+   </section>
+
+   </center>
 
       <div class="buttons row">
         <center>
