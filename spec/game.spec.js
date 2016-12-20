@@ -1,5 +1,6 @@
 // game.spec.js
-import Game from "game";
+// had to change to get to work now that I have a model.
+import Game from "app/models/game";
 
 // Every function in your application should have at least two tests
 // All tests should pass
