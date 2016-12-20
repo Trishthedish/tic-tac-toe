@@ -9,17 +9,18 @@ import Game from 'app/models/game';
 // import BoardView from 'app/views/board_view';
 import BoardView from 'app/views/board_view';
 
-import Application from 'app/models/application';
+// import Application from 'app/models/application';
 
 const GameView = Backbone.View.extend({
-  initialize: function() {
-    console.log("hello!!!");
+  initialize: function(options) {
+    //
+    // console.log("g_view >> options ", options);
     // console.log("options >>", options);
     // Compile a template to be shared between the individual players?
-    // this.playerTemplate = _.template($('#tmpl-player-card').html());
-    //
-    // //keep track of the <ul> element
-    // this.listElement = this.$('#player-cards');
+    this.spotTemplate = _.template($('#square-template').html());
+
+    // // //keep track of the <ul> element
+    // this.listElement = this.$('#');
     // // keep track of data being put into form by user.
   console.log("gamveiew >>>", this.model);
     this.listenTo(this.model, "change", this.render);
@@ -43,7 +44,7 @@ const GameView = Backbone.View.extend({
 
   events: {
     // 'click .btn-save' : 'addPlayer',
-    'click .boardgame td' : 'makeMove',
+    'click .gameboard td' : 'makeMove',
     'click': 'sayHello',
     'click .new-session' : 'newSession',
     'click .btn-cancel' : 'clearInput'
@@ -57,20 +58,40 @@ const GameView = Backbone.View.extend({
 
   makeMove: function(event) {
     event.preventDefault();
-    this.trigger('select', this);
+    // this.trigger('select', this);
+    // console.log("call>",this.model.play(event.target.id[0], event.target.id[1]));
 
-    console.log("you clicked a box");
-    console.log("event target id >>",$(event.target).attr('id'));
-    console.log("The current letter is", this.model.attributes);
 
-    this.listElement = $(event.target);
-// no idea what this is doing.
-  var symbol = this.model.attributes.symbol;
+    var state = this.model.play(event.target.id[0], event.target.id[1]);
 
-   this.listElement.html(symbol);
-   this.model.play($(event.target).attr('id'));
+    var row = event.target.id[0];
+    var col = event.target.id[1];
+
+    $("#" + event.target.id).text(state[row][col]);
+
+
+    this.displayMove(state);
+    console.log("event __>", event.target.id);
+
+    // console.log("event target id >>", (event.target.id).attr('id'));
+
+    // id 1 == row col (0,0)
+  },
+
+  displayMove: function(data) {
+    console.log("Yyyyyyyyyyy", data);
 
   },
+
+
+    // this.listElement = $(event.target);
+// no idea what this is doing.
+  // var symbol = this.model.attributes.symbol;
+  //
+  //  this.listElement.html(symbol);
+  //  this.model.play($(event.target).attr('id'));
+
+
 //   addPlayer: function(event){
 //     event.preventDefault();
 //
@@ -89,10 +110,10 @@ const GameView = Backbone.View.extend({
 //
 // },
 
-newSession: function(event) {
-  console.log("I tried to make a new session");
-
-},
+// newSession: function(event) {
+//   console.log("I tried to make a new session");
+//
+// },
 
   getInput: function(event) {
   console.log("getting input from the form");

@@ -5,13 +5,18 @@ body{
 }
 
 /*Tic Tac Toe game board*/
-canvas{
+/*canvas{
     width: 100px;
     height: 90px;
     border: 1px solid black;
     display: inline;
     background-position: center;
     background-repeat: no-repeat;
+}*/
+ /*controlling the size of the emoji's */
+td {
+  font-size: 40px;
+  text-align: center;
 }
 
 div {

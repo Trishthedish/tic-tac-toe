@@ -16,16 +16,15 @@ $(document).ready(function() {
   // what should options be? if anything.
   // new Game(options)
   // interesting, why did Elle take this out on hers?
-  // var game = new Game();
+  var game = new Game();
+
 
   var gameView = new GameView({
-    // model: game,
-    model: new Game(),
-    el: $('#application')
+    el: $('#application'),
+    model: game
 
   });
+
   gameView.render();
-
-
 
 });

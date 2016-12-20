@@ -14,6 +14,7 @@
     <header>
       <h1>Tic Tac Toe</h1>
       <section class="row player-form">
+
         <h3>Add Players</h3>
 
         <form class="names-form">
@@ -35,65 +36,35 @@
 
       </section>
     </header>
-    <div>
-      <table class="gameboard" summary="9 by 9 tic-tac-toe board">
-
-        <tr>
-          <td id="0"></td>
-          <td id="1"></td>
-          <td id="2"></td>
+  <!-- simplifying view  with table n-->
+    <table class="gameboard" summary="9 by 9 tic-tac-toe board">
+        <tr id="toprow">
+          <td id="00"></td>
+          <td id="01"></td>
+          <td id="02"></td>
         </tr>
-        <tr>
-          <td id="3"></td>
-          <td id="4"></td>
-          <td id="5"></td>
+        <tr id="centerRow">
+          <td id="10"></td>
+          <td id="11"></td>
+          <td id="12"></td>
         </tr>
-        <tr>
-          <td id="6"></td>
-          <td id="7"></td>
-          <td id="8"></td>
+        <tr id="lowerRow">
+          <td id="20"></td>
+          <td id="21"></td>
+          <td id"22"></td>
         </tr>
-
-      </table>
-    </div>
+    </table>
 
 
-
+<!-- end of application -->
   </div>
 </center>
-
-  <main id="board-holder">
-  </main>
-
-
-
 
   <!-- Underscore Templates -->
   <script type="text/template" id="square-template">
     <div class="square-content"><%- contents %></div>
   </script>
 
-  <!-- simplifying view  with table n-->
-
-    <!-- <section class="gameboard">
-      <div id="topRow">
-           <canvas id="1"></canvas>
-           <canvas id="2"></canvas>
-           <canvas id="3"></canvas>
-      </div>
-      <div id="centerRow">
-          <canvas id="4"></canvas>
-           <canvas id="5"></canvas>
-           <canvas id="6"></canvas>
-       </div>
-       <div id="lowerRow">
-           <canvas id="7"></canvas>
-           <canvas id="8"></canvas>
-           <canvas id="9"></canvas>
-       </div>
-   </section> -->
-
-   </center>
 
       <div class="buttons row">
         <center>

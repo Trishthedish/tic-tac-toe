@@ -63,11 +63,11 @@ const Game = Backbone.Model.extend({
     } else {
       if (this.get("nextTurn") % 2 === 0) {
         // if its even play O
-        this.get("board")[row][column] = "O";
+        this.get("board")[row][column] = "☀️";
 
       } else {
-        //else play X
-        this.get("board")[row][column] = "X";
+        //else play X 👣
+        this.get("board")[row][column] = "⛄️";
       }
       // increment turn everytime
       this.incrementTurn();
