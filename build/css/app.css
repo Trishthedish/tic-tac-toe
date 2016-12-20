@@ -5,13 +5,18 @@ body{
 }
 
 /*Tic Tac Toe game board*/
-canvas{
+/*canvas{
     width: 100px;
     height: 90px;
     border: 1px solid black;
     display: inline;
     background-position: center;
     background-repeat: no-repeat;
+}*/
+ /*controlling the size of the emoji's */
+td {
+  font-size: 40px;
+  text-align: center;
 }
 
 div {
@@ -48,4 +53,30 @@ h1 {
 
 .header {
   text-align: center;
+}
+
+.gameboard {
+  /*for testing purposes */
+  /*background-color: pink;*/
+}
+
+
+table {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+table tr:nth-of-type(even) {
+    background-color: transparent !important;
+}
+
+td {
+  border: black 3pt solid;
+  width: 7rem;
+  height: 7rem;
+}
+
+table td:hover, table td:focus {
+  background-color: #FFFF00 !important;
 }
