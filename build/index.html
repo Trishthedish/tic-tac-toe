@@ -22,7 +22,7 @@
               <input type="text" name="nameX">
             </label>
             <label for="">
-              Player O Name 
+              Player O Name
               <input type="text" name="nameO">
             </label>
             <h3 class="button btn btn-save">Save Team</h3>
@@ -32,6 +32,20 @@
       </section>
     </header>
   </div>
+  <main>
+    <ul id="player-cards" class="row align-center"></ul>
+  </main>
+
+
+
+
+  <!-- Underscore Templates -->
+  <script type="text/template" id="tmpl-player-card">
+    <li class="player-card">
+      <h4><%- name %></h4>
+    </li>
+  </script>
+
 
 
     <section id="gameboard">

@@ -1,5 +1,5 @@
 // game.js
-// step 1 import backbone
+// step 1 import Backbone
 import Backbone from 'Backbone';
 
 const Game = Backbone.Model.extend({
