@@ -15,7 +15,7 @@ const Game = Backbone.Model.extend({
     this.set("playerO", "Harry");
     this.set("nextTurn", 1);
     this.set("status", "pending");
-
+// magic square point value to each spot on this.board. ie, this.board[0][0] has the point value of this.pointValues[0][0]
     this.pointValues = [
       [8, 1, 6],
       [3, 5, 7],

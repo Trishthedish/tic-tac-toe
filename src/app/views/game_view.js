@@ -43,13 +43,14 @@ const GameView = Backbone.View.extend({
 
   events: {
     // 'click .btn-save' : 'addPlayer',
-    'click .gameboard td' : 'makeMove',
+    'click .gameboard td' : 'sayHello',
     'click .new-session' : 'newSession',
     'click .btn-cancel' : 'clearInput'
     // 'click .btn' : 'sayHello',
   },
 
-  sayHello: function() {
+  sayHello: function(event) {
+    event.preventDefault();
     console.log('Hellooooooooooo Friend!');
   },
 
@@ -62,7 +63,7 @@ const GameView = Backbone.View.extend({
     console.log("The current letter is", this.model.attributes);
 
     this.listElement = $(event.target);
-// no idea what this is doing. 
+// no idea what this is doing.
   var symbol = this.model.attributes.symbol;
 
    this.listElement.html(symbol);
