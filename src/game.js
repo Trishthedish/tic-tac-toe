@@ -55,7 +55,7 @@ const Game = Backbone.Model.extend({
 
     if (this.checkOccupied(row, column) === true) {
 
-      return "Already been useed, please pick another spot.";
+      return "Already been used, please pick another spot.";
 
       // allows us to keep ppl from playing after game is over!
     } else if (this.get("status") !== "pending") {
