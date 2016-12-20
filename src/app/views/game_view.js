@@ -43,7 +43,8 @@ const GameView = Backbone.View.extend({
 
   events: {
     // 'click .btn-save' : 'addPlayer',
-    'click .gameboard td' : 'sayHello',
+    'click .boardgame td' : 'makeMove',
+    'click': 'sayHello',
     'click .new-session' : 'newSession',
     'click .btn-cancel' : 'clearInput'
     // 'click .btn' : 'sayHello',

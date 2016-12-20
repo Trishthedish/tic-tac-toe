@@ -8,66 +8,72 @@
   </head>
   <body>
 
-  <center>
 
+<center>
   <div id="application">
     <header>
       <h1>Tic Tac Toe</h1>
       <section class="row player-form">
-        <h3>Add A New Player!</h3>
-        <form class="new-player">
+        <h3>Add Players</h3>
+
+        <form class="names-form">
           <div class="columns">
-            <label for="">
-              Player X Name
+            <label>
+              Player X
               <input type="text" name="nameX">
             </label>
-            <label for="">
-              Player O Name
+
+            <label>
+              Player O
               <input type="text" name="nameO">
             </label>
-            <h3 class="button btn btn-save">Save Team</h3>
-            <h3 class="button btn btn-cancel">Cancel</h3>
+
+            <h3 class="btn btn-save">Start Game!</h3>
+            <h3 class="btn btn-cancel">Cancel</h3>
           </div>
         </form>
+
       </section>
     </header>
+    <div>
+      <table class="gameboard" summary="9 by 9 tic-tac-toe board">
+
+        <tr>
+          <td id="0"></td>
+          <td id="1"></td>
+          <td id="2"></td>
+        </tr>
+        <tr>
+          <td id="3"></td>
+          <td id="4"></td>
+          <td id="5"></td>
+        </tr>
+        <tr>
+          <td id="6"></td>
+          <td id="7"></td>
+          <td id="8"></td>
+        </tr>
+
+      </table>
+    </div>
+
+
+
   </div>
-  <main>
-    <ul id="player-cards" class="row align-center"></ul>
+</center>
+
+  <main id="board-holder">
   </main>
 
 
 
 
   <!-- Underscore Templates -->
-  <script type="text/template" id="tmpl-player-card">
-    <li class="player-card">
-      <h4><%- name %></h4>
-    </li>
+  <script type="text/template" id="square-template">
+    <div class="square-content"><%- contents %></div>
   </script>
 
   <!-- simplifying view  with table n-->
-  <div>
-    <table class="gameboard" summary="9 by 9 tic-tac-toe board">
-
-      <tr>
-        <td id="0"></td>
-        <td id="1"></td>
-        <td id="2"></td>
-      </tr>
-      <tr>
-        <td id="3"></td>
-        <td id="4"></td>
-        <td id="5"></td>
-      </tr>
-      <tr>
-        <td id="6"></td>
-        <td id="7"></td>
-        <td id="8"></td>
-      </tr>
-
-    </table>
-  </div>
 
     <!-- <section class="gameboard">
       <div id="topRow">
