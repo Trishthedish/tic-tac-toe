@@ -55,7 +55,7 @@ const Game = Backbone.Model.extend({
 
     if (this.checkOccupied(row, column) === true) {
 
-      return "Already been used, please pick another spot.";
+      alert("Already been used, please pick another spot.");
 
       // allows us to keep ppl from playing after game is over!
     } else if (this.get("status") !== "pending") {
@@ -65,11 +65,11 @@ const Game = Backbone.Model.extend({
     } else {
       if (this.get("nextTurn") % 2 === 0) {
         // if its even play O
-        this.get("board")[row][column] = "X";
+        this.get("board")[row][column] = "☀️";
 
       } else {
         //else play X 👣
-        this.get("board")[row][column] = "O";
+        this.get("board")[row][column] = "☃️";
       }
       // increment turn everytime
       this.incrementTurn();
@@ -212,9 +212,13 @@ const Game = Backbone.Model.extend({
 
   checkScore: function(scoreX, scoreO) {
     if (scoreX == 15) {
-      return("X wins!");
+
+      // could call function that dipslays won.
+      alert("X wins!");
+      // return("X wins!");
     } else if (scoreO == 15) {
-      return("O wins!");
+      alert("O Wins!");
+      // return("O wins!");
     }
   }
 
