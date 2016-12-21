@@ -39,6 +39,8 @@ const Game = Backbone.Model.extend({
     if (row > 2 || column > 2 || row < 0 || column < 0) {
       throw new TypeError();
     }
+    // console.log("board>>",this.get("board")[row][column]);
+
     if (this.get("board")[row][column] !== "" ) {
       // its occupied,
       return true;
@@ -63,11 +65,11 @@ const Game = Backbone.Model.extend({
     } else {
       if (this.get("nextTurn") % 2 === 0) {
         // if its even play O
-        this.get("board")[row][column] = "☀️";
+        this.get("board")[row][column] = "X";
 
       } else {
         //else play X 👣
-        this.get("board")[row][column] = "⛄️";
+        this.get("board")[row][column] = "O";
       }
       // increment turn everytime
       this.incrementTurn();
