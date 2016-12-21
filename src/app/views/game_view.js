@@ -22,7 +22,7 @@ const GameView = Backbone.View.extend({
     // // //keep track of the <ul> element
     // this.listElement = this.$('#');
     // // keep track of data being put into form by user.
-  console.log("gamveiew >>>", this.model);
+  // console.log("gamveiew >>>", this.model);
     this.listenTo(this.model, "change", this.render);
         // console.log(">>> BREADCRUMBS: 0.5 init GameView");
     // this.input = {
@@ -53,7 +53,7 @@ const GameView = Backbone.View.extend({
 
   sayHello: function(event) {
     event.preventDefault();
-    console.log('Hellooooooooooo Friend!');
+    // console.log('Hellooooooooooo Friend!');
   },
 
   makeMove: function(event) {
@@ -61,17 +61,20 @@ const GameView = Backbone.View.extend({
     // this.trigger('select', this);
     // console.log("call>",this.model.play(event.target.id[0], event.target.id[1]));
 
+    console.log("this is row: ", event.target.id[0]);
+    console.log("this is col: ", event.target.id[1]);
+    var row = parseInt(event.target.id[0]);
+    var col = parseInt(event.target.id[1]);
 
-    var state = this.model.play(event.target.id[0], event.target.id[1]);
+    var state = this.model.play(row,col);
 
-    var row = event.target.id[0];
-    var col = event.target.id[1];
+
 
     $("#" + event.target.id).text(state[row][col]);
 
 
     this.displayMove(state);
-    console.log("event __>", event.target.id);
+    // console.log("event __>", event.target.id);
 
     // console.log("event target id >>", (event.target.id).attr('id'));
 
@@ -79,7 +82,7 @@ const GameView = Backbone.View.extend({
   },
 
   displayMove: function(data) {
-    console.log("Yyyyyyyyyyy", data);
+    // console.log("Yyyyyyyyyyy", data);
 
   },
 
