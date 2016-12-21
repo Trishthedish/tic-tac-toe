@@ -1,3 +1,4 @@
+
 body{
   background:#2980b9;
   font-family: 'Indie Flower', cursive;
@@ -13,6 +14,7 @@ body{
     background-position: center;
     background-repeat: no-repeat;
 }*/
+
  /*controlling the size of the emoji's */
 td {
   font-size: 40px;
@@ -23,7 +25,34 @@ div {
     display: block;
 }
 
+.showOWin {
+  visibility: visible;
+}
 
+.showXWin {
+  visibility: visible;
+}
+ /*add this classes back in when either is true!*/
+
+.oWins {
+  visibility: hidden;
+}
+
+.xWins {
+  visibility: hidden;
+}
+
+/*controling name input forms */
+.names-form input {
+  width: 22%;
+  height: 1.5rem;
+
+}
+
+.gameboard td {
+  background-color: #2980b9;
+
+}
 
 /*controling new game button */
 .btn {

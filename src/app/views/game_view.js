@@ -7,7 +7,7 @@ import Game from 'app/models/game';
 
 // no idea if this is something I need:
 // import BoardView from 'app/views/board_view';
-import BoardView from 'app/views/board_view';
+// import BoardView from 'app/views/board_view';
 
 // import Application from 'app/models/application';
 

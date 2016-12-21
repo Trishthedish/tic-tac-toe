@@ -3,16 +3,16 @@
   <head>
     <title>Tic-Tac-Toe</title>
     <meta charset="utf-8">
-    <!-- <link rel="stylesheet" href="css/foundation.css"> -->
+    <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
-
 
 <center>
   <div id="application">
     <header>
       <h1>Tic Tac Toe</h1>
+
       <section class="row player-form">
 
         <h3>Add Players</h3>
@@ -36,6 +36,17 @@
 
       </section>
     </header>
+
+<div class="row winningBanner">
+  <section class="small-2 large-4 columns xWins">
+    <h2>X Wins!</h2>
+  </section>
+  <section class="small-2 large-4 columns oWins">
+    <h2> O Wins!</h2>
+  </section>
+</div>
+
+
   <!-- simplifying view  with table n-->
     <table class="gameboard" summary="9 by 9 tic-tac-toe board">
         <tr id="toprow">

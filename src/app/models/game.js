@@ -1,5 +1,8 @@
 // game.js
 // step 1 import Backbone
+import $ from 'jquery';
+import _ from 'underscore';
+
 import Backbone from 'Backbone';
 
 const Game = Backbone.Model.extend({
@@ -213,12 +216,12 @@ const Game = Backbone.Model.extend({
   checkScore: function(scoreX, scoreO) {
     if (scoreX == 15) {
 
-      // could call function that dipslays won.
-      alert("X wins!");
+      $(".xWins").removeClass('.xWins').addClass("showXwin");
+      // return this.get("board");
       // return("X wins!");
     } else if (scoreO == 15) {
-      alert("O Wins!");
-      // return("O wins!");
+      $(".oWins").removeClass('.oWins').addClass("showOwin");
+      // return this.get("board");
     }
   }
 
