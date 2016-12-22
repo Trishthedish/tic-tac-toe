@@ -32,3 +32,14 @@ Wave Four:
 In this wave you'll connect the Backbone web application you created in the previous wave to an existing Rails API that has standard RESTful CRUD routes.
 
 Read the documentation for the Tic-Tac-Toe API
+
+
+
+if (scoreX == 15) {
+
+  $(".xWins").removeClass('xWins').addClass("showXwin");
+  // return this.get("board");
+  // return("X wins!");
+} else if (scoreO == 15) {
+  $(".oWins").removeClass('oWins').addClass("showOwin");
+  // return this.get("board");

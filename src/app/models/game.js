@@ -1,7 +1,6 @@
 // game.js
 // step 1 import Backbone
 import $ from 'jquery';
-import _ from 'underscore';
 
 import Backbone from 'Backbone';
 
@@ -55,7 +54,7 @@ const Game = Backbone.Model.extend({
   },
 
   play: function(row, column) {
-
+    // if the spot is occupied (true), cant make that move.
     if (this.checkOccupied(row, column) === true) {
 
       alert("Already been used, please pick another spot.");
@@ -63,16 +62,16 @@ const Game = Backbone.Model.extend({
       // allows us to keep ppl from playing after game is over!
     } else if (this.get("status") !== "pending") {
 
-      return "Game is over, just let it go!";
+      alert("Game is over, just let it go!");
 
     } else {
       if (this.get("nextTurn") % 2 === 0) {
         // if its even play O
-        this.get("board")[row][column] = "☀️";
+        this.get("board")[row][column] = "O";
 
       } else {
         //else play X 👣
-        this.get("board")[row][column] = "☃️";
+        this.get("board")[row][column] = "X";
       }
       // increment turn everytime
       this.incrementTurn();
@@ -81,10 +80,18 @@ const Game = Backbone.Model.extend({
     }
     // console.log("get("board"):", this.get("board"));
     if (this.get("status") == "pending") {
-      return this.get("board");
+      var data = {
+        board: this.get("board"),
+        message: this.get("status")
+      };
+      return data;
     } else {
       // does staus need to change as well?
-      return this.get("status");
+      var data = {
+        board: this.get("board"),
+        message: this.get("status")
+      };
+      return data;
     }
 
   },
@@ -216,12 +223,15 @@ const Game = Backbone.Model.extend({
   checkScore: function(scoreX, scoreO) {
     if (scoreX == 15) {
 
-      $(".xWins").removeClass('.xWins').addClass("showXwin");
-      // return this.get("board");
+      // could call function that dipslays won.
+      // alert("X wins!");
+      console.log("X wins!");
+      return "X wins!";
       // return("X wins!");
     } else if (scoreO == 15) {
-      $(".oWins").removeClass('.oWins').addClass("showOwin");
-      // return this.get("board");
+      // alert("O Wins!");
+      console.log('O wins');
+      return "O wins!";
     }
   }
 

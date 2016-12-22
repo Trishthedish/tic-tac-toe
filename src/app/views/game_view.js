@@ -70,19 +70,48 @@ const GameView = Backbone.View.extend({
 
 
 
-    $("#" + event.target.id).text(state[row][col]);
+    $("#" + event.target.id).text(state.board[row][col]);
 
 
     this.displayMove(state);
+    this.showWinner(state.message);
     // console.log("event __>", event.target.id);
 
     // console.log("event target id >>", (event.target.id).attr('id'));
 
     // id 1 == row col (0,0)
   },
+  showWinner: function(message) {
+    debugger
+    console.log('message >', message);
+    if (message !== "pending" && message == "tie") {
+      $(".tie").removeClass("tie").addClass("showTie");
 
-  displayMove: function(data) {
-    // console.log("Yyyyyyyyyyy", data);
+
+    } else if (message !== "pending" && message == "X wins!"){
+      $(".xWins").removeClass("xWins").addClass("showXWin");
+
+    } else if (message !== "pending" && message == "O wins!"){
+      $(".oWins").removeClass('oWins').addClass("showOWin");
+    }
+
+  },
+
+//   showWinner: function(){
+//     if (scoreX == 15) {
+//     $(".xWins").removeClass('xWins').addClass("showXwin");
+//   } else if (scoreO == 15) {
+//   $(".oWins").removeClass('oWins').addClass("showOwin");
+// },
+
+  // return this.get("board");
+  // return("X wins!");
+
+  // return this.get("board");
+
+
+    displayMove: function(data) {
+    console.log("Yyyyyyyyyyy", data);
 
   },
 
@@ -119,7 +148,7 @@ const GameView = Backbone.View.extend({
 // },
 
   getInput: function(event) {
-  console.log("getting input from the form");
+  // console.log("getting input from the form");
   var players = {
     nameX: this.input.nameX.val(),
     nameO: this.input.nameO.val()
