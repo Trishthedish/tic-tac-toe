@@ -17,12 +17,25 @@ const Game = Backbone.Model.extend({
     this.set("playerO", "Harry");
     this.set("nextTurn", 1);
     this.set("status", "pending");
-// magic square point value to each spot on this.board. ie, this.board[0][0] has the point value of this.pointValues[0][0]
+
+// *     273                 84
+//    *        \               /
+//    *          1 |   2 |   4  = 7
+//    *       -----+-----+-----
+//    *          8 |  16 |  32  = 56
+//    *       -----+-----+-----
+//    *         64 | 128 | 256  = 448
+//    *       =================
+//    *         73   146   292
+//    *
+//    */
     this.pointValues = [
-      [8, 1, 6],
-      [3, 5, 7],
-      [4, 9, 2]
+      [1, 2, 4],
+      [8, 16, 32],
+      [64, 128, 256]
     ];
+//
+    this.set("wins", [7,56, 448, 73, 146, 292, 273, 84]);
   }, // end of initialize.
 
 // testing puproses
@@ -125,10 +138,10 @@ const Game = Backbone.Model.extend({
       for (var col = 0; col < 3; col++) {
         if (this.get("board")[col][row] == "X") {
           scoreX += this.pointValues[col][row];
-          // console.log("element is X", scoreX)
+          console.log("element is X", scoreX);
         } else if (this.get("board")[col][row] == "O") {
           scoreO += this.pointValues[col][row];
-          // console.log("element is O", scoreO)
+          console.log("element is O", scoreO)
         }
       }
       var winner = this.checkScore(scoreX,scoreO);
@@ -221,7 +234,8 @@ const Game = Backbone.Model.extend({
   },
 
   checkScore: function(scoreX, scoreO) {
-    if (scoreX == 15) {
+    console.log(wins);
+    if (scoreX ==  this.get("wins")) {
 
       // could call function that dipslays won.
       // alert("X wins!");

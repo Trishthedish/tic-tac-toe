@@ -82,7 +82,6 @@ const GameView = Backbone.View.extend({
     // id 1 == row col (0,0)
   },
   showWinner: function(message) {
-    debugger
     console.log('message >', message);
     if (message !== "pending" && message == "tie") {
       $(".tie").removeClass("tie").addClass("showTie");
