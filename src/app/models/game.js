@@ -13,16 +13,16 @@ const Game = Backbone.Model.extend({
       ["", "", ""]
     ]);
     // this is where I could make a blank array, to hold user input names.
-    this.set("playerX", "Frida");
-    this.set("playerO", "Harry");
+    // this.set("playerX", "Frida");
+    // this.set("playerO", "Harry");
     this.set("nextTurn", 1);
     this.set("status", "pending");
 // magic square point value to each spot on this.board. ie, this.board[0][0] has the point value of this.pointValues[0][0]
-    this.pointValues = [
-      [8, 1, 6],
-      [3, 5, 7],
-      [4, 9, 2]
-    ];
+    // this.pointValues = [
+    //   [8, 1, 6],
+    //   [3, 5, 7],
+    //   [4, 9, 2]
+    // ];
   }, // end of initialize.
 
 // testing puproses
@@ -56,14 +56,10 @@ const Game = Backbone.Model.extend({
   play: function(row, column) {
     // if the spot is occupied (true), cant make that move.
     if (this.checkOccupied(row, column) === true) {
-
       alert("Already been used, please pick another spot.");
-
       // allows us to keep ppl from playing after game is over!
     } else if (this.get("status") !== "pending") {
-
       alert("Game is over, just let it go!");
-
     } else {
       if (this.get("nextTurn") % 2 === 0) {
         // if its even play O
@@ -111,129 +107,144 @@ const Game = Backbone.Model.extend({
     }
     // check if the game is complete && tied
     else if (this.get("status") == "pending" && this.get("nextTurn") == 10) {
-      this.set("status", "tie");
+
       return this.get("status");
     } else {
       return this.get("status");
     }
   },
+  checkVertical: function() {
+
+    let board = this.get("board");
+      // vertical column 0
+    if (board[0][0] === board[1][0] && board[1][0] === board[2][0]) {
+    return this.board[2][0];
+    }
+    // vertical column 1
+    if (board[0][1] === board[1][1] && board[1][1] === board[2][1]) {
+    return board[2][1];
+  }
+
+
 
   vertical: function () {
-    var scoreX = 0;
-    var scoreO = 0;
-    for (var row = 0; row < 3; row++) {
-      for (var col = 0; col < 3; col++) {
-        if (this.get("board")[col][row] == "X") {
-          scoreX += this.pointValues[col][row];
-          // console.log("element is X", scoreX)
-        } else if (this.get("board")[col][row] == "O") {
-          scoreO += this.pointValues[col][row];
-          // console.log("element is O", scoreO)
-        }
-      }
-      var winner = this.checkScore(scoreX,scoreO);
-      // console.log(this.checkScore(scoreX, scoreO))
-      if (winner) {
-        this.set("status", winner);
-      } else {
-        //reset scores
-        scoreX = 0;
-        scoreO = 0;
-      }
+    let board = this.get("board");
+    // vertical column 0
+    if (board == "X") {
+      checkVertical();
     }
-    return this.get("status");
+
+    if (board[0][0] === board[1][0] && board[1][0] === board[2][0]) {
+
+
+
+      console.log('this board: ', board);
+      this.set("status", "winner");
+      this.typeWinner();
+      return this.board[2][0];
+    }
+    // vertical column 1
+    if (board[0][1] === board[1][1] && board[1][1] === board[2][1]) {
+      this.set("status", "winner");
+      var typeWinner = board[2][1];
+      this.typeWinner();
+      return board[2][1];
+    }
+    // vertical column 2
+    if (board[0][2] === board[1][2] && board[1][2] === board[2][2]) {
+      this.set("status", "winner");
+      var typeWinner = board[2][2];
+      this.typeWinner();
+      return board[2][2];
+    }
   },
 
   horizontal: function () {
-    var scoreX = 0;
-    var scoreO = 0;
-    for (var row = 0; row < 3; row++) {
-      for (var col = 0; col < 3; col++) {
-        if (this.get("board")[row][col] == "X") {
-          scoreX += this.pointValues[row][col];
-          // console.log("element is X")
-        } else if (this.get("board")[row][col] == "O") {
-          scoreO += this.pointValues[row][col];
-          // console.log("element is O")
-        }
-      }
+  let board = this.get("board");
+  // horizonatal row 0
+  if (board[0][0] == board[0][1] && board[0][1] == board[0][2]) {
+    this.set("status", "winner");
+    this.typeWinner();
+    return board[0][2];
+  }
+  // horizonatal row 1
+  if (board[1][0] == board[1][1] && board[1][1] == board[1][2]) {
+    var typeWinner = board[2][2];
+    this.set("status", "winner");
+    this.typeWinner();
+    return board[1][2];
+  }
+  // horizonatal row 2
+  if (board[2][0] == board[2][1] && board[2][2] == board[2][2]) {
+    this.set("status", "winner");
+    var typeWinner = board[2][2];
+    this.typeWinner();
+    return board[2][2];
     }
-    var winner = this.checkScore(scoreX,scoreO);
-    // console.log(this.checkScore(scoreX, scoreO))
-    if (winner) {
-      this.set("status", winner);
-    } else {
-      //reset scores
-      scoreX = 0;
-      scoreO = 0;
-    }
-    return this.get("status");
   },
 
   diagonal: function() {
-    var scoreX = 0;
-    var scoreO = 0;
-    // checking for DIAGONAL Part 1
-    // top right --> bottom left. AKA the hard one!
-    for(var row = 0; row < 3; row++) {
-      var col = 2-row;
-      if (this.get("board")[row][col] == "X") {
-        scoreX += this.pointValues[row][col];
-      } else if (this.get("board")[row][col] == "O") {
-        scoreO += this.pointValues[row][col];
-      }
-    }
-    // checking diagonal Winner.
-    var winner = this.checkScore(scoreX,scoreO);
-    // console.log(this.checkScore(scoreX, scoreO))
-    if (winner) {
-      this.set("status", winner);
-      return this.get("status");
-    } else {
-      //reset scores
-      scoreX = 0;
-      scoreO = 0;
-    }
-    /// checking for DIAGONAL PART II
-    scoreX = 0; // do we need this?
-    scoreO = 0;
-      // top left ---> bottom right
-    for(var i = 0; i < 3; i++) {
-      if(this.get("board")[i][i] == "X") {
-        scoreX += this.pointValues[i][i];
-      } else if (this.get("board")[i][i] == "O") {
-        scoreO += this.pointValues[i][i];
-      }
-    }
-    // checking diagonal Winner.
-    winner = this.checkScore(scoreX,scoreO);
-    // console.log(this.checkScore(scoreX, scoreO))
-    if (winner) {
-      this.set("status", winner);
-      return this.get("status");
-    } else {
-      //reset scores
-      scoreX = 0;
-      scoreO = 0;
-    }
-    return this.get("status");
 
+    let board = this.get("board");
+
+    if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+      this.set("status", "winner");
+      var typeWinner = board[2][2];
+      this.typeWinner();
+      return board[2][2];
+    }
+    if (board[0][2]== board[1][1] && board[1][1] == board[2][0]) {
+      this.set("status", "winner");
+      var typeWinner = board[2][0];
+      this.typeWinner();
+      return board[2][0];
+
+      }
+    },
+
+  typeWinner: function() {
+    if (this.typeWinner == "X") {
+      return "X Wins!";
+    } else if (this.typeWinner == "O") {
+      return "O Wins!";
+    }
   },
 
-  checkScore: function(scoreX, scoreO) {
-    if (scoreX == 15) {
 
-      // could call function that dipslays won.
-      // alert("X wins!");
-      console.log("X wins!");
-      return "X wins!";
-      // return("X wins!");
-    } else if (scoreO == 15) {
-      // alert("O Wins!");
-      console.log('O wins');
-      return "O wins!";
-    }
-  }
+    // checkScore()
+    // if (this.get("board")[row][column] == "X") {
+    //   console.log("X wins!");
+    //   return "X Wins!";
+    // } else (this.get("board")[row][column] == "O") {
+    //   console.log("O Wins!");
+    //   return "O Wins!";
+    // }
+
+    // }
+
+    // if (winner) {
+    //   this.set("status", winner);
+    //   return this.get("status");
+    // } else {
+    //   //reset scores
+    //   scoreX = 0;
+    //   scoreO = 0;
+    //
+
+  // checkScore: function() {
+  //   if () {
+  //
+  // //     // could call function that dipslays won.
+  //     // alert("X wins!");
+  //     console.log("X wins!");
+  //     return "X wins!";
+  //     // return("X wins!");
+  //   } else if (scoreO == 15) {
+  //     // alert("O Wins!");
+  //     console.log('O wins');
+  //     return "O wins!";
+  //   }
+  // }
 
 }); // end of const Game
 
