@@ -1,29 +1,77 @@
+
 body{
   background:#2980b9;
   font-family: 'Indie Flower', cursive;
   margin: 0;
 }
 
-/*Tic Tac Toe game board*/
-/*canvas{
-    width: 100px;
-    height: 90px;
-    border: 1px solid black;
-    display: inline;
-    background-position: center;
-    background-repeat: no-repeat;
-}*/
  /*controlling the size of the emoji's */
-td {
+.gameboard td {
   font-size: 40px;
   text-align: center;
+  font-weight: bolder;
+
 }
 
 div {
     display: block;
 }
 
+ /*hiding these h2's till there is a win!*/
+.tie h2 {
+  visibility: hidden;
 
+}
+.oWins h2 {
+  visibility: hidden;
+
+}
+.xWins h2 {
+  visibility: hidden;
+
+}
+
+.showTie h2 {
+  visibility: visible;
+  font-family: font-family: 'Erica One', cursive;
+  font-weight: bolder;
+  color: #e74c3c;
+  background-color: #f1c40f;
+  border-radius: 85px;
+
+}
+
+.showOWin h2 {
+  visibility: visible;
+  font-family: font-family: 'Erica One', cursive;
+  font-weight: bolder;
+  color: #e74c3c;
+  background-color: #f1c40f;
+  border-radius: 85px;
+}
+
+.showXWin h2 {
+  visibility: visible;
+  font-family: font-family: 'Erica One', cursive;
+  font-weight: bolder;
+  color: #e74c3c;
+  background-color: #f1c40f;
+  border-radius: 85px;
+}
+ /*add this classes back in when either is true!*/
+
+
+/*controling name input forms */
+.names-form input {
+  width: 22%;
+  height: 1.5rem;
+
+}
+
+.gameboard td {
+  background-color: #2980b9;
+
+}
 
 /*controling new game button */
 .btn {

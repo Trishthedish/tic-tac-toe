@@ -3,17 +3,18 @@
   <head>
     <title>Tic-Tac-Toe</title>
     <meta charset="utf-8">
-    <!-- <link rel="stylesheet" href="css/foundation.css"> -->
+    <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Erica+One" rel="stylesheet">
   </head>
   <body>
-
 
 <center>
   <div id="application">
     <header>
       <h1>Tic Tac Toe</h1>
-      <section class="row player-form">
+
+      <!-- <section class="row player-form">
 
         <h3>Add Players</h3>
 
@@ -32,10 +33,29 @@
             <h3 class="btn btn-save">Start Game!</h3>
             <h3 class="btn btn-cancel">Cancel</h3>
           </div>
-        </form>
+        </form> -->
 
       </section>
     </header>
+
+<div class="row winningBanner">
+
+  <section class="small-2 medium-3 large-4 columns xWins">
+
+    <h2>🏆 X Wins! 🎉</h2>
+  </section>
+  <section class="small-2 medium-3 large-4 columns tie">
+    <h2>🤡 Tie 🤢!</h2>
+  </section>
+
+  <section class="small-2 medium-3 large-4 columns oWins">
+
+    <h2 class=>🏆 O Wins! 🎉</h2>
+  </section>
+</div>
+
+
+
   <!-- simplifying view  with table n-->
     <table class="gameboard" summary="9 by 9 tic-tac-toe board">
         <tr id="toprow">
@@ -51,10 +71,9 @@
         <tr id="lowerRow">
           <td id="20"></td>
           <td id="21"></td>
-          <td id"22"></td>
+          <td id="22"></td>
         </tr>
     </table>
-
 
 <!-- end of application -->
   </div>

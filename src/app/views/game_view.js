@@ -7,7 +7,7 @@ import Game from 'app/models/game';
 
 // no idea if this is something I need:
 // import BoardView from 'app/views/board_view';
-import BoardView from 'app/views/board_view';
+// import BoardView from 'app/views/board_view';
 
 // import Application from 'app/models/application';
 
@@ -22,7 +22,7 @@ const GameView = Backbone.View.extend({
     // // //keep track of the <ul> element
     // this.listElement = this.$('#');
     // // keep track of data being put into form by user.
-  console.log("gamveiew >>>", this.model);
+  // console.log("gamveiew >>>", this.model);
     this.listenTo(this.model, "change", this.render);
         // console.log(">>> BREADCRUMBS: 0.5 init GameView");
     // this.input = {
@@ -53,7 +53,7 @@ const GameView = Backbone.View.extend({
 
   sayHello: function(event) {
     event.preventDefault();
-    console.log('Hellooooooooooo Friend!');
+    // console.log('Hellooooooooooo Friend!');
   },
 
   makeMove: function(event) {
@@ -61,24 +61,56 @@ const GameView = Backbone.View.extend({
     // this.trigger('select', this);
     // console.log("call>",this.model.play(event.target.id[0], event.target.id[1]));
 
+    console.log("this is row: ", event.target.id[0]);
+    console.log("this is col: ", event.target.id[1]);
+    var row = parseInt(event.target.id[0]);
+    var col = parseInt(event.target.id[1]);
 
-    var state = this.model.play(event.target.id[0], event.target.id[1]);
+    var state = this.model.play(row,col);
 
-    var row = event.target.id[0];
-    var col = event.target.id[1];
 
-    $("#" + event.target.id).text(state[row][col]);
+
+    $("#" + event.target.id).text(state.board[row][col]);
 
 
     this.displayMove(state);
-    console.log("event __>", event.target.id);
+    this.showWinner(state.message);
+    // console.log("event __>", event.target.id);
 
     // console.log("event target id >>", (event.target.id).attr('id'));
 
     // id 1 == row col (0,0)
   },
+  showWinner: function(message) {
+    debugger
+    console.log('message >', message);
+    if (message !== "pending" && message == "tie") {
+      $(".tie").removeClass("tie").addClass("showTie");
 
-  displayMove: function(data) {
+
+    } else if (message !== "pending" && message == "X wins!"){
+      $(".xWins").removeClass("xWins").addClass("showXWin");
+
+    } else if (message !== "pending" && message == "O wins!"){
+      $(".oWins").removeClass('oWins').addClass("showOWin");
+    }
+
+  },
+
+//   showWinner: function(){
+//     if (scoreX == 15) {
+//     $(".xWins").removeClass('xWins').addClass("showXwin");
+//   } else if (scoreO == 15) {
+//   $(".oWins").removeClass('oWins').addClass("showOwin");
+// },
+
+  // return this.get("board");
+  // return("X wins!");
+
+  // return this.get("board");
+
+
+    displayMove: function(data) {
     console.log("Yyyyyyyyyyy", data);
 
   },
@@ -116,7 +148,7 @@ const GameView = Backbone.View.extend({
 // },
 
   getInput: function(event) {
-  console.log("getting input from the form");
+  // console.log("getting input from the form");
   var players = {
     nameX: this.input.nameX.val(),
     nameO: this.input.nameO.val()

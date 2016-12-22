@@ -1,5 +1,7 @@
 // game.js
 // step 1 import Backbone
+import $ from 'jquery';
+
 import Backbone from 'Backbone';
 
 const Game = Backbone.Model.extend({
@@ -39,6 +41,8 @@ const Game = Backbone.Model.extend({
     if (row > 2 || column > 2 || row < 0 || column < 0) {
       throw new TypeError();
     }
+    // console.log("board>>",this.get("board")[row][column]);
+
     if (this.get("board")[row][column] !== "" ) {
       // its occupied,
       return true;
@@ -50,24 +54,24 @@ const Game = Backbone.Model.extend({
   },
 
   play: function(row, column) {
-
+    // if the spot is occupied (true), cant make that move.
     if (this.checkOccupied(row, column) === true) {
 
-      return "Already been used, please pick another spot.";
+      alert("Already been used, please pick another spot.");
 
       // allows us to keep ppl from playing after game is over!
     } else if (this.get("status") !== "pending") {
 
-      return "Game is over, just let it go!";
+      alert("Game is over, just let it go!");
 
     } else {
       if (this.get("nextTurn") % 2 === 0) {
         // if its even play O
-        this.get("board")[row][column] = "☀️";
+        this.get("board")[row][column] = "O";
 
       } else {
         //else play X 👣
-        this.get("board")[row][column] = "⛄️";
+        this.get("board")[row][column] = "X";
       }
       // increment turn everytime
       this.incrementTurn();
@@ -76,10 +80,18 @@ const Game = Backbone.Model.extend({
     }
     // console.log("get("board"):", this.get("board"));
     if (this.get("status") == "pending") {
-      return this.get("board");
+      var data = {
+        board: this.get("board"),
+        message: this.get("status")
+      };
+      return data;
     } else {
       // does staus need to change as well?
-      return this.get("status");
+      var data = {
+        board: this.get("board"),
+        message: this.get("status")
+      };
+      return data;
     }
 
   },
@@ -210,9 +222,16 @@ const Game = Backbone.Model.extend({
 
   checkScore: function(scoreX, scoreO) {
     if (scoreX == 15) {
-      return("X wins!");
+
+      // could call function that dipslays won.
+      // alert("X wins!");
+      console.log("X wins!");
+      return "X wins!";
+      // return("X wins!");
     } else if (scoreO == 15) {
-      return("O wins!");
+      // alert("O Wins!");
+      console.log('O wins');
+      return "O wins!";
     }
   }
 
